@@ -4,7 +4,7 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 const Cabecalho = () => {
     return (
         <>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light">
                 <Container>
                     <Navbar.Brand href="#home">Acadêmico</Navbar.Brand>                    
                         <Nav className="me-auto">
