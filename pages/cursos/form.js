@@ -4,20 +4,22 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { IoIosSend } from 'react-icons/io'
+import { BiArrowBack } from 'react-icons/bi'
+import Link from 'next/link'
 
 
 const form = () => {
-  const {push} = useRouter()
+  const { push } = useRouter()
 
   const { register, handleSubmit } = useForm()
-  
+
   function enviar(dados) {
     const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
     cursos.push(dados)
     window.localStorage.setItem('cursos', JSON.stringify(cursos))
     push('/cursos')
   }
-  
+
   return (
     <Pagina titulo='Curso'>
       <Form>
@@ -34,9 +36,14 @@ const form = () => {
           <Form.Control type="text" placeholder="Digite a modalidade" {...register('modalidade')} />
         </Form.Group>
 
-        <Button  variant="warning" onClick={handleSubmit(enviar)}>
-          <IoIosSend /> Enviar
-        </Button>
+        <div>
+          <Button variant="warning" onClick={handleSubmit(enviar)}>
+            <IoIosSend /> Salvar
+          </Button>
+          <Link href="/cursos" className="btn btn-primary" type="submit">
+            <BiArrowBack /> Voltar
+          </Link>
+        </div>
       </Form>
     </Pagina>
   )

@@ -1,9 +1,10 @@
 import Pagina from '@/Components/Pagina'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { Table } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { AiFillPlusCircle } from 'react-icons/ai'
 import { HiTrash } from 'react-icons/hi'
+import { BiPencil } from 'react-icons/bi'
 
 const index = () => {
 
@@ -17,10 +18,12 @@ const index = () => {
     }
 
     function excluir(id) {
+        if(confirm('Deseja realmente excluir o registro?')){
         const itens = getAll()
         itens.splice(id, 1)
         window.localStorage.setItem('cursos', JSON.stringify(itens))
         setCursos(itens)
+    }
     }
 
     return (
@@ -38,7 +41,12 @@ const index = () => {
                 <tbody>
                     {cursos.map((item, i) => (
                         <tr key={i}>
-                            <td><HiTrash onClick={() => excluir(i)} /></td>
+                            <td>
+                                <Link href={'/cursos/' + i}> 
+                                <BiPencil href={'/cursos/' + i} title="Alterar" /> 
+                                </Link>
+                                <HiTrash onClick={() => excluir(i)} />
+                            </td>
                             <td>{item.nome}</td>
                             <td>{item.duracao}</td>
                             <td>{item.modalidade}</td>
