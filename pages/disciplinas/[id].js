@@ -2,23 +2,34 @@ import Pagina from '@/Components/Pagina'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { BiArrowBack } from 'react-icons/bi'
-import { FiSave} from 'react-icons/fi'
+import { FiSave } from 'react-icons/fi'
 
 
 const form = () => {
-    const { push } = useRouter()
+    const { push, query } = useRouter()
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, setValue } = useForm()
+
+    useEffect(() =>{
+        if(query.id){
+
+            axios.get('/api/disciplinas/' + query.id).then( resultado=>{
+                const disciplinas = resultado.data
+
+                for(let atributo in disciplinas){
+                    setValue(atributo, disciplinas[atributo])
+                }
+            })
+        }
+    }, [query.id])
   
     function salvar(dados) {
-
-        axios.post('/api/disciplinas', dados)
-        push('/disciplinas')
-              
+         axios.put('/api/disciplinas/' + query.id, dados) 
+         push('/disciplinas')           
     }
   
     return (
@@ -46,6 +57,4 @@ const form = () => {
       </Pagina>
     )
   }
-
-
 export default form

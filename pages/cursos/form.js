@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
-import { IoIosSend } from 'react-icons/io'
+import { FiSave } from 'react-icons/fi'
 import { BiArrowBack } from 'react-icons/bi'
 import Link from 'next/link'
 
@@ -36,11 +36,11 @@ const form = () => {
           <Form.Control type="text" placeholder="Digite a modalidade" {...register('modalidade')} />
         </Form.Group>
 
-        <div>
+        <div className='text-center'>
           <Button variant="warning" onClick={handleSubmit(enviar)}>
-            <IoIosSend /> Salvar
+            <FiSave className='me-2'/> Salvar
           </Button>
-          <Link href="/cursos" className="btn btn-primary" type="submit">
+          <Link href="/cursos" className="ms-2 btn btn-primary" type="submit">
             <BiArrowBack /> Voltar
           </Link>
         </div>
