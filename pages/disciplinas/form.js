@@ -22,7 +22,7 @@ const form = () => {
     }
   
     return (
-      <Pagina titulo='Disciplinas'>
+      <Pagina titulo='Disciplina'>
         <Form>
           <Form.Group className="mb-3" controlId="nome">
             <Form.Label>Nome</Form.Label>

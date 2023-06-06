@@ -18,7 +18,7 @@ const form = () => {
 
     return (
         <>
-            <Pagina titulo="Salas">
+            <Pagina titulo="Sala">
                 <Form>
                     <Form.Group className="mb-3 text-white" controlId="nome">
                         <Form.Label>
