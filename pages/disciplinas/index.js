@@ -38,8 +38,7 @@ const index = () => {
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th>Curso</th>
-                        
+                        <th>Curso</th>                        
                     </tr>
                 </thead>
                 <tbody>

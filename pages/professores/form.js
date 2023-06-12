@@ -12,7 +12,7 @@ import { FiSave} from 'react-icons/fi'
 const form = () => {
     const { push } = useRouter()
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
   
     function salvar(dados) {
 
@@ -24,34 +24,62 @@ const form = () => {
     return (
       <Pagina titulo='Professor'>
         <Form>
-          <Form.Group className="mb-3" controlId="nome">
-            <Form.Label>Nome</Form.Label>
-            <Form.Control type="text" placeholder="Digite o nome"  {...register('nome')} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="cpf" >
-            <Form.Label>CPF</Form.Label>
-            <Form.Control type="text" placeholder="Digite seu CPF" {...register('cpf')} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="matricula" >
-            <Form.Label>Matrícula</Form.Label>
-            <Form.Control type="text" placeholder="Digite sua Matrícula" {...register('matricula')} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="email" >
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="text" placeholder="Digite seu Email" {...register('email')} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="telefone" >
-            <Form.Label>Telefone</Form.Label>
-            <Form.Control type="text" placeholder="Digite seu Telefone" {...register('telefone')} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="cpf" >
-            <Form.Label>CEP</Form.Label>
-            <Form.Control type="text" placeholder="Digite seu CEP" {...register('cep')} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="endereco" >
-            <Form.Label>Endereço</Form.Label>
-            <Form.Control type="text" placeholder="Digite seu Endereço" {...register('endereco')} />
-          </Form.Group>
+        <Form.Group className="mb-3" controlId="nome">
+          <Form.Label>Nome</Form.Label>
+          <Form.Control isInvalid={errors.nome} type="text" placeholder="Digite o nome"  {...register('nome', professorVatidator.nome)} />
+          {
+            errors.nome &&
+            <small>{errors.nome.message}</small>
+          }
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="cpf" >
+          <Form.Label>CPF</Form.Label>
+          <Form.Control isInvalid={errors.cpf} type="text" placeholder="Digite seu CPF" {...register('cpf', professorValidator.cpf)} />
+          {
+            errors.cpf &&
+            <small>{errors.cpf.message}</small>
+          }
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="matricula" >
+          <Form.Label>Matrícula</Form.Label>
+          <Form.Control isInvalid={errors.matricula} type="text" placeholder="Digite sua Matrícula" {...register('matricula', professorValidator.matricula)} />
+          {
+            errors.matricula &&
+            <small>{errors.matricula.message}</small>
+          }
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="email" >
+          <Form.Label>Email</Form.Label>
+          <Form.Control isInvalid={errors.email} type="text" placeholder="Digite seu Email" {...register('email', professorValidator.email)} />
+          {
+            errors.email &&
+            <small>{errors.email.message}</small>
+          }
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="telefone" >
+          <Form.Label>Telefone</Form.Label>
+          <Form.Control isInvalid={errors.telefone} type="text" placeholder="Digite seu Telefone" {...register('telefone', professorValidator.telefone)} />
+          {
+            errors.telefone &&
+            <small>{errors.telefone.message}</small>
+          }
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="cpf" >
+          <Form.Label>CEP</Form.Label>
+          <Form.Control isInvalid={errors.cep} type="text" placeholder="Digite seu CEP" {...register('cep', professorValidator.cep)} />
+          {
+            errors.cep &&
+            <small>{errors.cep.message}</small>
+          }
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="endereco" >
+          <Form.Label>Endereço</Form.Label>
+          <Form.Control isInvalid={errors.endereco} type="text" placeholder="Digite seu Endereço" {...register('endereco', professorValidator.endereco)} />
+          {
+            errors.endereco &&
+            <small>{errors.endereco.message}</small>
+          }
+        </Form.Group>
           
   
           <div className='text-center'>
