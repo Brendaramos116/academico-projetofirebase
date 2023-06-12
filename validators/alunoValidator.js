@@ -1,4 +1,4 @@
-const alunoVatidator = {
+const alunoValidator = {
 
     nome: {
         required: 'O campo é obrigatório!',
@@ -76,3 +76,5 @@ const alunoVatidator = {
     }
 
 }
+
+export default alunoValidator

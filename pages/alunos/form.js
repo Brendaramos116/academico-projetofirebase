@@ -1,4 +1,5 @@
 import Pagina from '@/Components/Pagina'
+import alunoValidator from '@/validators/alunoValidator'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -7,12 +8,12 @@ import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { BiArrowBack } from 'react-icons/bi'
 import { FiSave } from 'react-icons/fi'
-
+import { mask } from 'remask'
 
 const form = () => {
   const { push } = useRouter()
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
   function salvar(dados) {
 
@@ -21,12 +22,24 @@ const form = () => {
 
   }
 
+  function handleChange(event) {
+    const name = event.target.name
+    const valor = event.target.setValue
+    const mascara = event.target.getAttribute('mask')
+
+    setValue(name, mask(valor, mascara));
+  }
+
+
   return (
     <Pagina titulo='Aluno'>
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label>Nome</Form.Label>
-          <Form.Control isInvalid={errors.nome} type="text" placeholder="Digite o nome"  {...register('nome', alunoVatidator.nome)} />
+          <Form.Control isInvalid={errors.nome} type="text"
+            placeholder="Digite o nome"
+            {...register('nome', alunoValidator.nome)} />
+
           {
             errors.nome &&
             <small>{errors.nome.message}</small>
@@ -34,7 +47,10 @@ const form = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="cpf" >
           <Form.Label>CPF</Form.Label>
-          <Form.Control isInvalid={errors.cpf} type="text" placeholder="Digite seu CPF" {...register('cpf', alunoVatidator.cpf)} />
+          <Form.Control mask='999.999.999-99' isInvalid={errors.cpf} type="text"
+            placeholder="Digite seu CPF"
+            {...register('cpf', alunoValidator.cpf)}
+            onChange={handleChange} />
           {
             errors.cpf &&
             <small>{errors.cpf.message}</small>
@@ -42,15 +58,19 @@ const form = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="matricula" >
           <Form.Label>Matrícula</Form.Label>
-          <Form.Control isInvalid={errors.matricula} type="text" placeholder="Digite sua Matrícula" {...register('matricula', alunoVatidator.matricula)} />
+          <Form.Control isInvalid={errors.matricula} type="text"
+            placeholder="Digite sua Matrícula"
+            {...register('matricula', alunoValidator.matricula)} />
           {
             errors.matricula &&
             <small>{errors.matricula.message}</small>
           }
         </Form.Group>
         <Form.Group className="mb-3" controlId="email" >
-          <Form.Label>Email</Form.Label>
-          <Form.Control isInvalid={errors.email} type="text" placeholder="Digite seu Email" {...register('email', alunoVatidator.email)} />
+          <Form.Label>E-mail</Form.Label>
+          <Form.Control isInvalid={errors.email} type="text"
+            placeholder="Digite seu Email"
+            {...register('email', alunoValidator.email)} />
           {
             errors.email &&
             <small>{errors.email.message}</small>
@@ -58,7 +78,10 @@ const form = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="telefone" >
           <Form.Label>Telefone</Form.Label>
-          <Form.Control isInvalid={errors.telefone} type="text" placeholder="Digite seu Telefone" {...register('telefone', alunoVatidator.telefone)} />
+          <Form.Control mask='(99) 99999-9999' isInvalid={errors.telefone} type="text"
+           placeholder="Digite seu Telefone" 
+           {...register('telefone', alunoValidator.telefone)}
+           onChange={handleChange} />
           {
             errors.telefone &&
             <small>{errors.telefone.message}</small>
@@ -66,7 +89,10 @@ const form = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="cpf" >
           <Form.Label>CEP</Form.Label>
-          <Form.Control isInvalid={errors.cep} type="text" placeholder="Digite seu CEP" {...register('cep', alunoVatidator.cep)} />
+          <Form.Control mask='99.999-999' isInvalid={errors.cep} type="text"
+           placeholder="Digite seu CEP" 
+           {...register('cep', alunoValidator.cep)}
+           onChange={handleChange} />
           {
             errors.cep &&
             <small>{errors.cep.message}</small>
@@ -74,7 +100,9 @@ const form = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="endereco" >
           <Form.Label>Endereço</Form.Label>
-          <Form.Control isInvalid={errors.endereco} type="text" placeholder="Digite seu Endereço" {...register('endereco', alunoVatidator.endereco)} />
+          <Form.Control isInvalid={errors.endereco} type="text" 
+          placeholder="Digite seu Endereço"
+          {...register('endereco', alunoValidator.endereco)} />
           {
             errors.endereco &&
             <small>{errors.endereco.message}</small>
