@@ -74,3 +74,5 @@ const professorValidator = {
 
     }
 }
+
+export default professorValidator

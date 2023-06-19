@@ -30,3 +30,5 @@ const salaValidator = {
         }
     }
 }
+
+export default salaValidator

@@ -25,3 +25,4 @@ const disciplinaValidator = {
         }
     }
 }
+export default disciplinaValidator

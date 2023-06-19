@@ -8,7 +8,7 @@ const alunoValidator = {
             message: 'O número mínimo é 1'
         },
         maxLength: {
-            value: 20,
+            value: 50,
             message: 'O número máximo é 10'
         }
     },

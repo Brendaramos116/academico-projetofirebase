@@ -20,3 +20,5 @@ const semestreValidator = {
         required: 'O campo é obrigatório!'
     }
 }
+
+export default semestreValidator
